@@ -73,6 +73,8 @@ BEGIN_MESSAGE_MAP(CMFCMemo4Dlg, CDialogEx)
 	ON_COMMAND(ID_MNU_VIEW_LOWER, &CMFCMemo4Dlg::OnMnuViewLower)
 	ON_COMMAND(ID_MNU_VIEW_UPPER, &CMFCMemo4Dlg::OnMnuViewUpper)
 	ON_COMMAND(ID_MNU_FILE_EXIT, &CMFCMemo4Dlg::OnMnuFileExit)
+	ON_COMMAND(ID_MNU_VIEW_HEX, &CMFCMemo4Dlg::OnMnuViewHex)
+	ON_COMMAND(ID_MNU_FILE_OPEN, &CMFCMemo4Dlg::OnMnuFileOpen)
 END_MESSAGE_MAP()
 
 
@@ -249,4 +251,70 @@ void CMFCMemo4Dlg::OnMnuViewUpper()
 void CMFCMemo4Dlg::OnMnuFileExit()
 {
 	EndDialog(0);
+}
+
+
+void CMFCMemo4Dlg::OnMnuViewHex()
+{
+	CString cstr, s1, cs;
+	//char buf[1024];
+	//char* sp = buf;			// buf의 첫번째 위치를 가리키고 있음
+	
+	CMemo1.GetWindowTextA(cstr);
+
+	// char* str = cstr.GetBuffer();
+	// for (int i = 0; *(str + i); i++)
+	for (int i = 0; i < strlen(cstr); i++)	// for (int i = 0; *(str + i); i++)
+	{
+		//// char 배열 및 포인터를 이용한 경우
+		//sprintf(sp, "%02X ", *(str + i));
+		//while (*sp)	sp++;					// sp위치 증가 -> buf의 다음 공간을 가리킴
+
+		// Cstring class를 이용한 경우
+		s1.Format("%02X ", (unsigned)cstr[i]);
+		if (i % 16 == 0)	cs += "\r\n";
+		cs += s1;
+	}
+	//CMemo2.SetWindowTextA(buf);
+	CMemo2.SetWindowTextA(cs);
+}
+
+
+void CMFCMemo4Dlg::OnMnuFileOpen()
+{
+	OPENFILENAME ofn;
+	char fname[512];
+	HWND hwnd = m_hWnd;
+	HANDLE hd;
+	FILE* fp;
+
+	ZeroMemory(&ofn, sizeof(ofn));		// 메모리 clear  ===> 0
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = hwnd;
+	ofn.lpstrFile = fname;
+
+	ofn.lpstrFile[0] = '\0';
+	ofn.nMaxFile = sizeof(fname);
+	ofn.lpstrFilter = "All\0*.*\0Text\0*.TXT\0";
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFileTitle = NULL;
+	ofn.nMaxFileTitle = 0;
+	ofn.lpstrInitialDir = NULL;
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+	// Display the Open dialog box
+
+	if (GetOpenFileName(&ofn) == TRUE)
+	{
+		
+		CString cstr;
+		fp = fopen(fname, "r+b");
+		char* buf = fname;
+		while(fgets(buf, 512, fp) != NULL)
+		{
+			cstr += buf;
+		}
+		CMemo1.SetWindowTextA(cstr);
+	}
+
 }

@@ -41,4 +41,6 @@ public:
 	afx_msg void OnMnuViewLower();
 	afx_msg void OnMnuViewUpper();
 	afx_msg void OnMnuFileExit();
+	afx_msg void OnMnuViewHex();
+	afx_msg void OnMnuFileOpen();
 };
