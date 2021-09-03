@@ -7,6 +7,7 @@
 #include "MFCMemo4.h"
 #include "MFCMemo4Dlg.h"
 #include "afxdialogex.h"
+#include "CDlgTest.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -75,6 +76,9 @@ BEGIN_MESSAGE_MAP(CMFCMemo4Dlg, CDialogEx)
 	ON_COMMAND(ID_MNU_FILE_EXIT, &CMFCMemo4Dlg::OnMnuFileExit)
 	ON_COMMAND(ID_MNU_VIEW_HEX, &CMFCMemo4Dlg::OnMnuViewHex)
 	ON_COMMAND(ID_MNU_FILE_OPEN, &CMFCMemo4Dlg::OnMnuFileOpen)
+	ON_WM_SIZE()
+	ON_WM_ACTIVATE()
+	ON_BN_CLICKED(IDC_BUTTON2, &CMFCMemo4Dlg::OnClickedButton2)
 END_MESSAGE_MAP()
 
 
@@ -109,9 +113,10 @@ BOOL CMFCMemo4Dlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 큰 아이콘을 설정합니다.
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
-	ShowWindow(SW_MINIMIZE);
+	ShowWindow(SW_SHOW);
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
+	((CButton*)GetDlgItem(IDC_RADIO1))->SetState(true);
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -291,7 +296,7 @@ void CMFCMemo4Dlg::OnMnuFileOpen()
 	ZeroMemory(&ofn, sizeof(ofn));		// 메모리 clear  ===> 0
 	ofn.lStructSize = sizeof(ofn);
 	ofn.hwndOwner = hwnd;
-	ofn.lpstrFile = fname;
+	ofn.lpstrFile = fname;				// 선택한 file명
 
 	ofn.lpstrFile[0] = '\0';
 	ofn.nMaxFile = sizeof(fname);
@@ -317,4 +322,43 @@ void CMFCMemo4Dlg::OnMnuFileOpen()
 		CMemo1.SetWindowTextA(cstr);
 	}
 
+}
+
+
+void CMFCMemo4Dlg::OnSize(UINT nType, int cx, int cy)
+{
+	CDialogEx::OnSize(nType, cx, cy);
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	if ((GetDlgItem(IDC_TB_MEMO1) != NULL) && (GetDlgItem(IDC_TB_MEMO2) != NULL))
+	{
+		CMemo1.SetWindowPos(NULL, 5, 5, cx / 2, cy / 2, 0);  // x, y : origin / cx, cy : size
+		CMemo2.SetWindowPos(NULL, 5, cy / 2 + 5, cx / 2, cy / 2 -10, 0);
+	}
+	
+}
+
+
+void CMFCMemo4Dlg::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
+{
+	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	CRect r;		// client 영역을 담기 위한 구조체
+//	GetWindowRect(&r);		// 타이틀바를 포함하여 사각형의 너비,높이를 가져옴
+	GetClientRect(&r);
+	OnSize(0, r.Width(), r.Height());
+}
+
+
+void CMFCMemo4Dlg::OnClickedButton2()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	//MessageBox("메시지 박스 테스트중입니다.\n줄바꿈이 먹을까요?");
+	/*CDlgTest dlg;
+	dlg.DoModal();*/
+
+	CDlgTest* dlgg = new CDlgTest();
+	dlgg->DoModal();
+	delete dlgg;
 }
