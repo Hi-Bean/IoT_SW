@@ -1,8 +1,5 @@
-﻿  CDlgTest.cpp
-  MFCMemo4.cpp
-  MFCMemo4Dlg.cpp
+﻿  MFCMemo4Dlg.cpp
 C:\Users\hallo\source\repos\IoT_SW\Server Programming\MFCMemo4\MFCMemo4\MFCMemo4Dlg.cpp(187,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\hallo\source\repos\IoT_SW\Server Programming\MFCMemo4\MFCMemo4\MFCMemo4Dlg.cpp(316,8): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\hallo\source\repos\IoT_SW\Server Programming\MFCMemo4\MFCMemo4\MFCMemo4Dlg.cpp(293,9): warning C4101: 'hd' :참조되지 않은 지역 변수입니다.
-  코드를 생성하고 있습니다...
   MFCMemo4.vcxproj -> C:\Users\hallo\source\repos\IoT_SW\Server Programming\MFCMemo4\x64\Debug\MFCMemo4.exe
