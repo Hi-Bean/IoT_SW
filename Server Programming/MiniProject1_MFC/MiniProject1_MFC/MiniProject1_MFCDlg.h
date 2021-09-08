@@ -33,6 +33,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CEdit CMemo1;
+	CFont m_Font;
+	LOGFONT m_LogFont;
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg void OnMnuOpen();
@@ -40,4 +42,6 @@ public:
 	afx_msg void OnMnuExit();
 	afx_msg void OnMnuNew();
 	afx_msg void OnClose();
+	void SaveFunction();
+	afx_msg void OnMnuFont();
 };

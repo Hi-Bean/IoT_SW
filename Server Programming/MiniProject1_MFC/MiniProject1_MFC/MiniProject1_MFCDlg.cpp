@@ -74,6 +74,8 @@ BEGIN_MESSAGE_MAP(CMiniProject1MFCDlg, CDialogEx)
 	ON_COMMAND(ID_MNU_EXIT, &CMiniProject1MFCDlg::OnMnuExit)
 	ON_COMMAND(ID_MNU_NEW, &CMiniProject1MFCDlg::OnMnuNew)
 	ON_WM_CLOSE()
+	ON_WM_MBUTTONDOWN()
+	ON_COMMAND(ID_MNU_FONT, &CMiniProject1MFCDlg::OnMnuFont)
 END_MESSAGE_MAP()
 
 
@@ -112,6 +114,8 @@ BOOL CMiniProject1MFCDlg::OnInitDialog()
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 
+	m_Font.CreatePointFont(100, _T("Time New Romans"));
+	
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
 
@@ -259,6 +263,7 @@ void CMiniProject1MFCDlg::OnMnuSave()
 		// 파일 종료
 		file.Close();
 	}
+
 }
 
 // MENU - 파일(F) - 종료(E)
@@ -304,6 +309,36 @@ void CMiniProject1MFCDlg::OnMnuNew()
 	EndDialog(0);*/
 }
 
+void CMiniProject1MFCDlg::SaveFunction()
+{
+	CString m_strPath;
+	CString cstr;
+	CStdioFile file;
+
+	// CFile file;
+	CFileException ex;
+	CFileDialog dlg(FALSE, _T("*.txt"), NULL, OFN_FILEMUSTEXIST | OFN_OVERWRITEPROMPT, _T("TXT Files(*.txt)|*.txt|"), NULL);
+
+	if (dlg.DoModal() == IDOK)
+	{
+		m_strPath = dlg.GetPathName();
+		if (m_strPath.Right(4) != ".txt")
+		{
+			m_strPath += ".txt";
+		}
+
+		file.Open(m_strPath, CFile::modeCreate | CFile::modeReadWrite, &ex);
+
+		// edit box 내용 저장
+		UpdateData(TRUE);
+		CMemo1.GetWindowTextA(cstr);
+		file.WriteString(cstr);
+
+		// 파일 종료
+		file.Close();
+		EndDialog(0);
+	}
+}
 
 void CMiniProject1MFCDlg::OnClose()
 {
@@ -334,4 +369,24 @@ void CMiniProject1MFCDlg::OnClose()
 	}
 	
 	//CDialogEx::OnClose();
+}
+
+
+
+void CMiniProject1MFCDlg::OnMnuFont()
+{
+	m_Font.GetLogFont(&m_LogFont);
+	CFontDialog dlg(&m_LogFont);
+	CString strText;
+	CMemo1.GetWindowTextA(strText);
+
+	if (dlg.DoModal() == IDOK)
+	{
+		dlg.m_cf.Flags = dlg.m_cf.Flags | CF_INITTOLOGFONTSTRUCT | CF_EFFECTS;
+		dlg.GetCurrentFont(&m_LogFont);
+		m_Font.DeleteObject();
+		m_Font.CreateFontIndirectA(&m_LogFont);
+		CMemo1.SetFont(&m_Font);
+	}
+
 }

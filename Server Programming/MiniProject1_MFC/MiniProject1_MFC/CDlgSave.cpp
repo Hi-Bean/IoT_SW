@@ -5,7 +5,7 @@
 #include "MiniProject1_MFC.h"
 #include "CDlgSave.h"
 #include "afxdialogex.h"
-#include "MiniProject1_MFCDlg.h";
+#include "MiniProject1_MFCDlg.h"
 
 
 
@@ -16,7 +16,6 @@ IMPLEMENT_DYNAMIC(CDlgSave, CDialogEx)
 CDlgSave::CDlgSave(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_DLG_SAVE, pParent)
 {
-
 }
 
 CDlgSave::~CDlgSave()
