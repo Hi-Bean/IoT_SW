@@ -8,7 +8,7 @@
 // CMiniProject1MFCDlg 대화 상자
 class CMiniProject1MFCDlg : public CDialogEx
 {
-// 생성입니다.
+	// 생성입니다.
 public:
 	CMiniProject1MFCDlg(CWnd* pParent = nullptr);	// 표준 생성자입니다.
 
@@ -17,7 +17,7 @@ public:
 	enum { IDD = IDD_MINIPROJECT1_MFC_DIALOG };
 #endif
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 지원입니다.
 
 
@@ -44,4 +44,14 @@ public:
 	afx_msg void OnClose();
 	void SaveFunction();
 	afx_msg void OnMnuFont();
+	afx_msg void OnMnuPage();
+	afx_msg void OnMnuPrint();
+	afx_msg void OnMnuFind();
+	afx_msg void OnMnuReplace();
+	afx_msg LRESULT OnFindReplace(WPARAM wParam, LPARAM lParam);
+	afx_msg void On32795();
+	afx_msg void OnMnuDate();
+	afx_msg void OnMnuLower();
+	afx_msg void OnMnuUpper();
+	afx_msg void OnMnuTot();
 };

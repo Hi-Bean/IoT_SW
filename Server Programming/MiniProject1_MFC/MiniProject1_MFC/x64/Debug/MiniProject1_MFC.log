@@ -1,7 +1,7 @@
 ﻿  CDlgSave.cpp
   MiniProject1_MFC.cpp
   MiniProject1_MFCDlg.cpp
-C:\Users\hallo\source\repos\IoT_SW\Server Programming\MiniProject1_MFC\MiniProject1_MFC\MiniProject1_MFCDlg.cpp(226,8): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hallo\source\repos\IoT_SW\Server Programming\MiniProject1_MFC\MiniProject1_MFC\MiniProject1_MFCDlg.cpp(202,9): warning C4101: 'hd' :참조되지 않은 지역 변수입니다.
+C:\Users\hallo\source\repos\IoT_SW\Server Programming\MiniProject1_MFC\MiniProject1_MFC\MiniProject1_MFCDlg.cpp(236,8): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hallo\source\repos\IoT_SW\Server Programming\MiniProject1_MFC\MiniProject1_MFC\MiniProject1_MFCDlg.cpp(212,9): warning C4101: 'hd' :참조되지 않은 지역 변수입니다.
   코드를 생성하고 있습니다...
   MiniProject1_MFC.vcxproj -> C:\Users\hallo\source\repos\IoT_SW\Server Programming\MiniProject1_MFC\x64\Debug\MiniProject1_MFC.exe

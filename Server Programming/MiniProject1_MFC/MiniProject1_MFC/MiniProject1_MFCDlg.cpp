@@ -13,7 +13,8 @@
 #define new DEBUG_NEW
 #endif
 
-
+const int WM_FINDREPLACE = ::RegisterWindowMessage(FINDMSGSTRING);
+int findPos;
 // 응용 프로그램 정보에 사용되는 CAboutDlg 대화 상자입니다.
 
 class CAboutDlg : public CDialogEx
@@ -76,6 +77,15 @@ BEGIN_MESSAGE_MAP(CMiniProject1MFCDlg, CDialogEx)
 	ON_WM_CLOSE()
 	ON_WM_MBUTTONDOWN()
 	ON_COMMAND(ID_MNU_FONT, &CMiniProject1MFCDlg::OnMnuFont)
+	ON_COMMAND(ID_MNU_PAGE, &CMiniProject1MFCDlg::OnMnuPage)
+	ON_COMMAND(ID_MNU_PRINT, &CMiniProject1MFCDlg::OnMnuPrint)
+	ON_COMMAND(ID_MNU_FIND, &CMiniProject1MFCDlg::OnMnuFind)
+	ON_COMMAND(ID_MNU_REPLACE, &CMiniProject1MFCDlg::OnMnuReplace)
+	ON_REGISTERED_MESSAGE(WM_FINDREPLACE, OnFindReplace)
+	ON_COMMAND(ID_MNU_DATE, &CMiniProject1MFCDlg::OnMnuDate)
+	ON_COMMAND(ID_MNU_LOWER, &CMiniProject1MFCDlg::OnMnuLower)
+	ON_COMMAND(ID_MNU_UPPER, &CMiniProject1MFCDlg::OnMnuUpper)
+	ON_COMMAND(ID_MNU_TOT, &CMiniProject1MFCDlg::OnMnuTot)
 END_MESSAGE_MAP()
 
 
@@ -388,5 +398,194 @@ void CMiniProject1MFCDlg::OnMnuFont()
 		m_Font.CreateFontIndirectA(&m_LogFont);
 		CMemo1.SetFont(&m_Font);
 	}
+
+}
+
+
+void CMiniProject1MFCDlg::OnMnuPage()
+{
+	CPageSetupDialog dlg;
+	dlg.DoModal();
+}
+
+
+void CMiniProject1MFCDlg::OnMnuPrint()
+{
+	CPrintDialogEx dlg; // 인쇄설정 
+	dlg.DoModal();
+}
+
+void CMiniProject1MFCDlg::OnMnuFind()
+{
+	// dlg is a pointer to a class derived from CFindReplaceDialog
+	// which defines variables used by the FINDREPLACE structure.
+	// InitFindReplaceDlg creates a CFindReplaceDialog and initializes
+	// the m_fr with the data members from the derived class
+	CFindReplaceDialog* pFindDlg = new CFindReplaceDialog; // Must be created on the heap
+	if (!pFindDlg->Create(TRUE, _T(""), NULL, FR_DOWN | FR_MATCHDIAC, this)) //The above describes
+	{
+		return;
+	}
+	pFindDlg->ShowWindow(SW_SHOW);   //The window must be displayed after it is created
+	pFindDlg->SetActiveWindow();    //Set as the active window
+	
+}
+
+
+void CMiniProject1MFCDlg::OnMnuReplace()
+{
+	CFindReplaceDialog* pReplaceDlg = new CFindReplaceDialog;
+	findPos = -1;
+	if (!pReplaceDlg->Create(FALSE, _T(""), _T(""), FR_DOWN, this))
+	{
+		return;
+	}
+	pReplaceDlg->ShowWindow(SW_SHOW);
+	pReplaceDlg->SetActiveWindow();
+}
+
+
+LRESULT CMiniProject1MFCDlg::OnFindReplace(WPARAM wParam, LPARAM lParam)
+{
+	int startSel = 0, endSel = 0;
+	CFindReplaceDialog* pDlg = CFindReplaceDialog::GetNotifier(lParam);
+	CString buffer, findString, tBuf, rp;
+	CMemo1.GetWindowTextA(buffer);
+	tBuf = buffer;
+		
+	if (pDlg != NULL)
+	{
+			if (pDlg->FindNext())
+			{
+				MessageBox("Find!", "notice", MB_OK);
+				findString = pDlg->GetFindString();
+				
+				findPos = 0;
+				char* str = tBuf.GetBuffer() + findPos;
+				CString b1 = (CString)str;
+				int count = 0;
+
+				while (b1.Find(findString) >= 0)
+				{
+					findPos = b1.Find(findString);
+
+					if (count < 1)
+					{
+						startSel += findPos;
+					}
+					else
+						startSel += findPos + findString.GetLength();
+
+					endSel = startSel + findString.GetLength();
+					CMemo1.SetSel(startSel, endSel); //system("PAUSE");
+					str = b1.GetBuffer() + findPos + findString.GetLength();
+
+					count++;
+					b1 = (CString)str;
+					CString n; n.Format("%d번 찾았습니다", count);
+					MessageBoxA(n, "찾기 진행 중", MB_OKCANCEL);
+					
+				}
+				CString m; m.Format("%s를 총 %d번 찾았습니다", findString, count);
+				MessageBoxA(m, "찾기 완료", MB_OKCANCEL);
+			}
+			else if (pDlg->ReplaceAll())		// findString과 rp의 길이가 같아야만 정상작동 (추후 업데이트예정)
+			{
+				MessageBox("ReplaceAll!", "notice", MB_OK);
+				findString = pDlg->GetFindString();
+				rp = pDlg->GetReplaceString();
+				findPos = 0;
+				char* str = tBuf.GetBuffer() + findPos;
+				CString b2 = (CString)str;
+				int count = 0;
+
+				while (b2.Find(findString) >= 0)
+				{
+					findPos = b2.Find(findString);
+
+					if (count < 1)
+					{
+						startSel += findPos;
+					}
+					else
+						startSel += findPos + findString.GetLength();
+
+					endSel = startSel + findString.GetLength();
+					CMemo1.SetSel(startSel, endSel);
+					//system("PAUSE");
+					CMemo1.ReplaceSel(rp);
+					//system("PAUSE");
+				
+					str = b2.GetBuffer() + findPos + findString.GetLength();
+
+					count++;
+					b2 = (CString)str;
+				}
+				CString m; m.Format("%s를 %d번 바꿨습니다", findString, count);
+				MessageBoxA(m, "바꾸기", MB_OKCANCEL);
+			}
+			else if (pDlg->ReplaceCurrent())
+			{
+				MessageBox("ReplaceCurrent!", "notice", MB_OK);
+				rp = pDlg->GetReplaceString();
+				CMemo1.ReplaceSel(rp);
+			}
+	}
+	//if (pDlg->IsTerminating())
+ //     {
+ //        CString csFindString;
+ //        CString csReplaceString;
+
+ //        csFindString = pDlg->GetFindString();
+ //        csReplaceString = pDlg->GetReplaceString();
+
+	//	 int src_str_len = GetDlgItemText(IDC_EDIT_MEMO1, csFindString);
+
+ //        VERIFY(pDlg->DestroyWindow());
+ //     }
+	//delete pDlg; //Add this will automatically destroy the dialog
+	return 0;
+
+}
+
+
+void CMiniProject1MFCDlg::OnMnuDate()
+{
+	CTime cTime = CTime::GetCurrentTime();
+	CString strDT;
+
+	strDT.Format("%02d:%02d %04d-%02d-%02d", cTime.GetHour(), cTime.GetMinute(), cTime.GetYear(), cTime.GetMonth(), cTime.GetDay());
+	int nLen = CMemo1.GetWindowTextLengthA();
+	
+	CMemo1.SetFocus();
+	CMemo1.SetSel(nLen, nLen);
+	CMemo1.ReplaceSel(strDT);
+}
+
+
+
+void CMiniProject1MFCDlg::OnMnuLower()
+{
+	CString str;
+	CMemo1.GetWindowTextA(str);
+	CMemo1.SetWindowTextA(str.MakeLower());
+}
+
+
+void CMiniProject1MFCDlg::OnMnuUpper()
+{
+	CString str;
+	CMemo1.GetWindowTextA(str);
+	CMemo1.SetWindowTextA(str.MakeLower());
+}
+
+
+void CMiniProject1MFCDlg::OnMnuTot()
+{
+	CString str;
+	int len = CMemo1.GetWindowTextLengthA();
+	str.Format("총 길이는 %d 입니다", len);
+	AfxMessageBox(str);
+
 
 }

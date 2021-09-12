@@ -28,14 +28,30 @@
 #define ID_32784                        32784
 #define ID_MNU_PAGE                     32785
 #define ID_MNU_PRINT                    32786
+#define ID_32787                        32787
+#define ID_32788                        32788
+#define ID_32789                        32789
+#define ID_32790                        32790
+#define ID_MNU                          32791
+#define ID_MNU_FIND                     32792
+#define ID_MNU_REPLACE                  32793
+#define ID_MNU_DATE                     32794
+#define ID_32795                        32795
+#define ID_32796                        32796
+#define ID_MNU_CAL                      32797
+#define ID_32798                        32798
+#define ID_32799                        32799
+#define ID_MNU_LOWER                    32800
+#define ID_MNU_UPPER                    32801
+#define ID_MNU_TOT                      32802
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        133
-#define _APS_NEXT_COMMAND_VALUE         32787
-#define _APS_NEXT_CONTROL_VALUE         1004
+#define _APS_NEXT_RESOURCE_VALUE        135
+#define _APS_NEXT_COMMAND_VALUE         32803
+#define _APS_NEXT_CONTROL_VALUE         1007
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
