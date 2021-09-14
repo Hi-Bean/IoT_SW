@@ -57,6 +57,7 @@ CMFCApplication2App::CMFCApplication2App() noexcept
 // 유일한 CMFCApplication2App 개체입니다.
 
 CMFCApplication2App theApp;
+CMFCApplication2View* theView;
 
 
 // CMFCApplication2App 초기화
@@ -138,6 +139,8 @@ BOOL CMFCApplication2App::InitInstance()
 	// 창 하나만 초기화되었으므로 이를 표시하고 업데이트합니다.
 	m_pMainWnd->ShowWindow(SW_SHOW);
 	m_pMainWnd->UpdateWindow();
+
+	theView = (CMFCApplication2View*)((CMainFrame*)AfxGetMainWnd())->GetActiveView();
 	return TRUE;
 }
 
@@ -213,4 +216,50 @@ void CMFCApplication2App::SaveCustomState()
 // CMFCApplication2App 메시지 처리기
 
 
+static int ctrlKey = 0;
+static int shiftKey = 0;
+BOOL CMFCApplication2App::PreTranslateMessage(MSG* pMsg)
+{
+	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
+	switch (pMsg->message)
+	{
+	case WM_KEYDOWN:
+		switch (pMsg->wParam)
+		{
+		case VK_CONTROL:
+			ctrlKey = 1;
+			break;
+		case VK_SHIFT:
+			shiftKey = 1;
+			break;
 
+		case 187:		// '='
+			//CMFCApplication2App.cpp 에서 View의 함수를 불러올 때
+			/*CMainFrame* p = (CMainFrame*)AfxGetMainWnd();
+			CMFCApplication2View* p1 = (CMFCApplication2View*)((CMainFrame*)p->GetActiveView());*/
+			//theView->OnViewZoomIn(); return 1;
+			if (ctrlKey == 1) { theView->OnViewZoomIn(); return 1; }		// ctrl키 사용
+			else break;
+		case 107:		// num키보드의 '+'
+		case 109:		// num키보드의 '-'
+		case 189:		// '_'
+			if (ctrlKey == 1) {
+				theView->OnViewZoomOut(); return 1;
+			}
+			break;
+		//dafault: break;
+		}
+		break;
+
+	case WM_KEYUP:
+		if (pMsg->wParam == VK_CONTROL)
+		{
+			ctrlKey = 0;
+		}
+		else if (pMsg->wParam == VK_SHIFT)
+		{
+			shiftKey = 0;
+		}
+	}
+	return CWinAppEx::PreTranslateMessage(pMsg);
+}

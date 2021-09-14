@@ -170,32 +170,3 @@ void CMFCApplication2View::OnViewZoomOut()
 	SetFont(&tf);
 }
 
-
-BOOL CMFCApplication2View::PreTranslateMessage(MSG* pMsg)
-{
-	switch (pMsg->message)
-	{
-	case WM_KEYDOWN:
-		switch(pMsg->wParam)
-		{
-		case 187:		// ctrl + '='  =  '+'
-			OnViewZoomIn();
-			break;
-		case 107:		// num키보드의 '+'
-			OnViewZoomIn();
-			break;
-		case 189:		// ctrl + '_'  =  '-'
-			OnViewZoomOut();
-			break;
-		case 109:		// num키보드의 '-'
-			OnViewZoomOut();
-			break;
-		}
-		break;
-
-	case WM_KEYUP:
-		break;
-	}
-
-	return CEditView::PreTranslateMessage(pMsg);
-}

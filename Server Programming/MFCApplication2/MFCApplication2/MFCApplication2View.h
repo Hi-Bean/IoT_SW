@@ -45,7 +45,6 @@ protected:
 public:
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
 };
 
 #ifndef _DEBUG  // MFCApplication2View.cpp의 디버그 버전
