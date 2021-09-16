@@ -1,0 +1,10 @@
+C:\Users\hallo\source\repos\IoT_SW\C#\NotePad\NotePad\bin\Debug\NotePad.exe.config
+C:\Users\hallo\source\repos\IoT_SW\C#\NotePad\NotePad\bin\Debug\NotePad.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\NotePad\NotePad\bin\Debug\NotePad.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\NotePad\NotePad\obj\Debug\NotePad.csprojAssemblyReference.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\NotePad\NotePad\obj\Debug\NotePad.Form1.resources
+C:\Users\hallo\source\repos\IoT_SW\C#\NotePad\NotePad\obj\Debug\NotePad.Properties.Resources.resources
+C:\Users\hallo\source\repos\IoT_SW\C#\NotePad\NotePad\obj\Debug\NotePad.csproj.GenerateResource.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\NotePad\NotePad\obj\Debug\NotePad.csproj.CoreCompileInputs.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\NotePad\NotePad\obj\Debug\NotePad.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\NotePad\NotePad\obj\Debug\NotePad.pdb
