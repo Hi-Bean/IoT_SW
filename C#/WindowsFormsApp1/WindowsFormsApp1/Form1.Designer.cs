@@ -65,6 +65,7 @@ namespace WindowsFormsApp1
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(124, 23);
             this.cbType.TabIndex = 2;
+            this.cbType.SelectedIndexChanged += new System.EventHandler(this.cbType_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -92,7 +93,7 @@ namespace WindowsFormsApp1
             this.btType.Name = "btType";
             this.btType.Size = new System.Drawing.Size(117, 25);
             this.btType.TabIndex = 4;
-            this.btType.Text = "button1";
+            this.btType.Text = "PARSE";
             this.btType.UseVisualStyleBackColor = true;
             this.btType.Click += new System.EventHandler(this.btType_Click);
             // 

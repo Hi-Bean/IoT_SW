@@ -52,5 +52,25 @@ namespace WindowsFormsApp1
                 MessageBox.Show(e1.Message);
             }
         }
+
+        private void cbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string s1 = tbInput.Text;
+                int n = cbType.SelectedIndex;
+
+                if (n == 1)
+                    tbTest.Text += "Int.Parse() 결과 : " + " [" + int.Parse(s1) + "]\r\n";
+                else if (n == 2)
+                    tbTest.Text += "double.Parse() 결과 : " + " [" + double.Parse(s1) + "]\r\n";
+                else if (n == 3)
+                    tbTest.Text += "입력 string : " + " [" + s1 + "]\r\n";
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.Message);
+            }
+        }
     }
 }
