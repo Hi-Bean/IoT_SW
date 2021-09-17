@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,17 @@ namespace NotePad
         {
             InitializeComponent();
         }
+
+        [DllImport ("kernel32.dll")]
+        static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder buf, int size, string Path);
+
+        [DllImport("kernel32.dll")]
+        static extern bool WritePrivateProfileString(string section, string key, string val, string Path);
+        void AddLine(string str)
+        {
+            tbNote.Text += str + "\r\n";
+        }
+
         string strOrg = "";
         int viewState = 0;        // 0:Normal    1:Lower    2:Upper    3:Hexa 
         private void mnuViewLower_Click(object sender, EventArgs e)
@@ -59,7 +71,7 @@ namespace NotePad
                 {
                     //s1 = string.Format(" {0:X2}", bArr[i]);   // printf(" %x ", n);
                     s1 = $" {bArr[i]:X2}";
-                    if (i % 16 == 15) s1 += "\r\n";
+                    if (i % 16 == 15) AddLine(s1);
                     tbNote.Text += s1;
                 }
 
@@ -205,15 +217,24 @@ namespace NotePad
             //char[] ch = str.ToCharArray();
             for (int i = 0; i <= str.Length; i++)
             {
-                if (str[i] != d) continue;
-                count++;
-                if(n == count)
+                if (n == 0)
                 {
-                    for(int j=i+1; str[j] != d; j++)
+                    result += str[i];
+                    if(str[i+1] == d) break;
+                }
+                else
+                {
+                    if (str[i] != d) continue;
+                    count++;
+                    if (n == count)
                     {
-                        result += str[j];
+                        for (int j = i + 1; j < str.Length; j++)
+                        {
+                            if (str[j] == d) break;
+                            result += str[j];
+                        }
+                        break;
                     }
-                    break;
                 }
             }
             return result;
@@ -248,6 +269,84 @@ namespace NotePad
         {
             tbNote.Text += GetToken(2, "app,bee,carrot,dark", ',') + "\r\n";
             tbNote.Text += $"{GetToken_byLee(3, "apple,banana,cake,doll", ',')}";
+        }
+
+        Point p;
+        private void mnuEditCallTest_Click(object sender, EventArgs e)
+        {
+            Form2 dlg = new Form2();
+            dlg.Location = p;
+
+            // Call Test로 port를 선택했었다면
+            if (sbLable1.Text != "")
+            {
+                string temp = GetToken_byLee(0, sbLable1.Text, ':');
+                // temp ==>> COM1:9600,N81
+                if (temp == "COM1")
+                    dlg.rbCom1.Checked = true;
+                else if(temp == "COM2")
+                    dlg.rbCom2.Checked = true;
+
+                //speed
+                string temp2 = sbLable1.Text.Remove(0, 5);
+                // temp2 ==>> 9600,N81
+                dlg.cbSpeed.Text = GetToken(0, temp2, ',');
+
+                //parity + databit + startbit
+                string temp3 = GetToken(1, temp2, ',');
+                if (temp3[0] == 'N') dlg.cbParity.Text = dlg.cbParity.Items[0].ToString();
+                else if(temp3[0] == 'O') dlg.cbParity.SelectedIndex = 1;
+                else if (temp3[0] == 'E') dlg.cbParity.Text = dlg.cbParity.Items[2].ToString();
+
+                dlg.cbDatabit.Text = $"{temp3[1]}";
+                dlg.cbStopbit.Text = $"{temp3[2]}";
+                //dlg.cbDatabit.Text = temp3[1].ToString();           // 좌변은 string, temp3[1]은 char형이므로 ToString()처리
+                //dlg.cbStopbit.Text = temp3[2].ToString();
+            }
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                // string str = ((dlg.rbCom1.Checked) ? "COM1 : " : "COM2 : ");    // 삼항연산자사용
+                // 예제가 세개인 경우? false의 경우에 삼항연산문을 넣어 비교가능
+                string str = (dlg.rbCom1.Checked) ? "COM1:" :
+                             (dlg.rbCom2.Checked) ? "COM2:" : "XXX:";
+                ////if (dlg.rbCom1.Checked)
+                ////    str += "COM1 : ";
+                ////else if (dlg.rbCom2.Checked)
+                ////    str += "COM2 : ";
+                ////else
+                ////    str += "XXX : ";
+
+                str += dlg.cbSpeed.Text + "," + dlg.cbParity.Text.Trim(' ').ToUpper()[0] +  dlg.cbDatabit.Text + dlg.cbStopbit.Text;
+                //AddLine(str);
+                sbLable1.Text = str;        // status bar에 출력
+                
+            }
+            p = dlg.Location;
+            sbLabel2.Text = dlg.Location.ToString();
+        }
+
+
+        string inipath = ".\\NotePad.ini";   // .ini파일의 전체 경로
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            StringBuilder buf = new StringBuilder(500);
+
+
+            GetPrivateProfileString("Form1", "LocationX", "0", buf, 500, inipath);
+            int x = int.Parse(buf.ToString());
+
+            GetPrivateProfileString("Form1", "LocationY", "0", buf, 500, inipath);
+            int y = int.Parse(buf.ToString());
+
+            Location = new Point(x, y);
+
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            WritePrivateProfileString("Form1", "LocationX", $"{Location.X}", inipath);
+            WritePrivateProfileString("Form1", "LocationY", $"{Location.Y}", inipath);
         }
     }
 }
