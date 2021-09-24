@@ -1,4 +1,5 @@
-﻿using System;
+﻿using myLibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,11 +23,7 @@ namespace NotePad
             InitializeComponent();
         }
 
-        [DllImport ("kernel32.dll")]
-        static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder buf, int size, string Path);
-
-        [DllImport("kernel32.dll")]
-        static extern bool WritePrivateProfileString(string section, string key, string val, string Path);
+        
         void AddLine(string str)
         {
             tbNote.Text += str + "\r\n";
@@ -202,73 +199,17 @@ namespace NotePad
             }
         }
 
-        // prototype    : string GetToken(int n, string str, char d);
-        // Argument     :
-        //      n       : n번째 item
-        //     str      : 문자열
-        //      d       : 구분자
-        // 설명         : 문자열 str에 있는 데이터를 구분자 d를 통해 필드를 구분
-        //                그 중 n 번째 데이터 반환
-        //              ex) GetToken(1, "a,b,c,d", ",")  ===>  "b"
-        //              ex2) GetToken(2, "app,bee,carrot,dark", ',')  ===>  "carrot"
-        public string GetToken(int n, string str, char d)
-        {
-            int count = 0; string result = "";
-            //char[] ch = str.ToCharArray();
-            for (int i = 0; i <= str.Length; i++)
-            {
-                if (n == 0)
-                {
-                    result += str[i];
-                    if(str[i+1] == d) break;
-                }
-                else
-                {
-                    if (str[i] != d) continue;
-                    count++;
-                    if (n == count)
-                    {
-                        for (int j = i + 1; j < str.Length; j++)
-                        {
-                            if (str[j] == d) break;
-                            result += str[j];
-                        }
-                        break;
-                    }
-                }
-            }
-            return result;
-        }
-
-        string GetToken_byLee(int n, string str, char d)
-        {
-            //// case 1
-            //int i, j, k, n1, n2;        // n1 : start, n2 : end
-            //for(i=j=k=n1=n2=0; i<str.Length; i++)
-            //{
-            //    if (str[i] == d) k++;
-            //    if (k == n) n1 = i;
-            //    if (k == n + 1) n2 = i;
-            //}
-            //if (n1 == 0) return "";
-            //if (n2 == 0) n2 = str.Length;
-            //return str.Substring(n1, n2 - n1);
-
-            // case 2
-            string[] sArr = str.Split(d);
-            if (n < sArr.Length) return sArr[n];
-            else return "";
-        }
-
+        
         private void mnuFilePrint_Click(object sender, EventArgs e)
         {
             
         }
-
+        //myClass mc = new myClass();       // static으로 선언한 경우에는 다르게 사용
+                                            // static class library는 변수 선언 필요 없음
         private void mnuEditTest_Click(object sender, EventArgs e)
         {
-            tbNote.Text += GetToken(2, "app,bee,carrot,dark", ',') + "\r\n";
-            tbNote.Text += $"{GetToken_byLee(3, "apple,banana,cake,doll", ',')}";
+            tbNote.Text += myClass.GetToken(2, "app,bee,carrot,dark", ',') + "\r\n";
+            tbNote.Text += $"{myClass.GetToken_byLee(3, "apple,banana,cake,doll", ',')}";
         }
 
         Point p;
@@ -280,7 +221,7 @@ namespace NotePad
             // Call Test로 port를 선택했었다면
             if (sbLable1.Text != "")
             {
-                string temp = GetToken_byLee(0, sbLable1.Text, ':');
+                string temp = myClass.GetToken_byLee(0, sbLable1.Text, ':');
                 // temp ==>> COM1:9600,N81
                 if (temp == "COM1")
                     dlg.rbCom1.Checked = true;
@@ -290,10 +231,10 @@ namespace NotePad
                 //speed
                 string temp2 = sbLable1.Text.Remove(0, 5);
                 // temp2 ==>> 9600,N81
-                dlg.cbSpeed.Text = GetToken(0, temp2, ',');
+                dlg.cbSpeed.Text = myClass.GetToken(0, temp2, ',');
 
                 //parity + databit + startbit
-                string temp3 = GetToken(1, temp2, ',');
+                string temp3 = myClass.GetToken(1, temp2, ',');
                 if (temp3[0] == 'N') dlg.cbParity.Text = dlg.cbParity.Items[0].ToString();
                 else if(temp3[0] == 'O') dlg.cbParity.SelectedIndex = 1;
                 else if (temp3[0] == 'E') dlg.cbParity.Text = dlg.cbParity.Items[2].ToString();
@@ -327,17 +268,22 @@ namespace NotePad
         }
 
 
-        string inipath = ".\\NotePad.ini";   // .ini파일의 전체 경로
+       static string inipath = ".\\NotePad.ini";   // .ini파일의 전체 경로
+       IniClass ic = new IniClass(inipath);
         private void Form1_Load(object sender, EventArgs e)
         {
-            StringBuilder buf = new StringBuilder(500);
+            //StringBuilder buf = new StringBuilder(500);
+            //GetPrivateProfileString("Form1", "LocationX", "0", buf, 500, inipath);
+            //int x = int.Parse(buf.ToString());
 
+            string t = ic.GetString("Form1", "LocationX", "0");
+            int x = int.Parse(t);
 
-            GetPrivateProfileString("Form1", "LocationX", "0", buf, 500, inipath);
-            int x = int.Parse(buf.ToString());
+            //GetPrivateProfileString("Form1", "LocationY", "0", buf, 500, inipath);
+            //int y = int.Parse(buf.ToString());
 
-            GetPrivateProfileString("Form1", "LocationY", "0", buf, 500, inipath);
-            int y = int.Parse(buf.ToString());
+            t = ic.GetString("Form1", "LocationY","0");
+            int y = int.Parse(t.ToString());
 
             Location = new Point(x, y);
 
@@ -345,8 +291,21 @@ namespace NotePad
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            WritePrivateProfileString("Form1", "LocationX", $"{Location.X}", inipath);
-            WritePrivateProfileString("Form1", "LocationY", $"{Location.Y}", inipath);
+            ic.WriteString("Form1", "LocationX", $"{Location.X}");
+            ic.WriteString("Form1", "LocationY", $"{Location.Y}");
+            //WritePrivateProfileString("Form1", "LocationX", $"{Location.X}", inipath);
+            //WritePrivateProfileString("Form1", "LocationY", $"{Location.Y}", inipath);
+        }
+
+        private void mnuEditCallTest_2_Click(object sender, EventArgs e)
+        {
+            frmInput frm = new frmInput("문자열 입력 테스트");
+            frm.ShowDialog();
+
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                AddLine(frm.callTest2str);
+            }
         }
     }
 }

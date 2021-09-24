@@ -57,6 +57,7 @@ namespace NotePad
             this.sbLable1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.sbLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.mnuEditCallTest_2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -159,7 +160,8 @@ namespace NotePad
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuEditTest,
-            this.mnuEditCallTest});
+            this.mnuEditCallTest,
+            this.mnuEditCallTest_2});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
             this.editToolStripMenuItem.Text = "Edit";
@@ -167,14 +169,14 @@ namespace NotePad
             // mnuEditTest
             // 
             this.mnuEditTest.Name = "mnuEditTest";
-            this.mnuEditTest.Size = new System.Drawing.Size(150, 26);
+            this.mnuEditTest.Size = new System.Drawing.Size(224, 26);
             this.mnuEditTest.Text = "Test";
             this.mnuEditTest.Click += new System.EventHandler(this.mnuEditTest_Click);
             // 
             // mnuEditCallTest
             // 
             this.mnuEditCallTest.Name = "mnuEditCallTest";
-            this.mnuEditCallTest.Size = new System.Drawing.Size(150, 26);
+            this.mnuEditCallTest.Size = new System.Drawing.Size(224, 26);
             this.mnuEditCallTest.Text = "Call Test";
             this.mnuEditCallTest.Click += new System.EventHandler(this.mnuEditCallTest_Click);
             // 
@@ -266,6 +268,13 @@ namespace NotePad
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 18);
             // 
+            // mnuEditCallTest_2
+            // 
+            this.mnuEditCallTest_2.Name = "mnuEditCallTest_2";
+            this.mnuEditCallTest_2.Size = new System.Drawing.Size(224, 26);
+            this.mnuEditCallTest_2.Text = "Call Test #2";
+            this.mnuEditCallTest_2.Click += new System.EventHandler(this.mnuEditCallTest_2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -318,6 +327,7 @@ namespace NotePad
         private System.Windows.Forms.ToolStripStatusLabel sbLable1;
         private System.Windows.Forms.ToolStripStatusLabel sbLabel2;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditCallTest_2;
     }
 }
 
