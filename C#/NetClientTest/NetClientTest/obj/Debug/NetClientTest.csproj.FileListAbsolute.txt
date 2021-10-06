@@ -1,0 +1,10 @@
+C:\Users\hallo\source\repos\IoT_SW\C#\NetClientTest\NetClientTest\bin\Debug\NetClientTest.exe.config
+C:\Users\hallo\source\repos\IoT_SW\C#\NetClientTest\NetClientTest\bin\Debug\NetClientTest.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\NetClientTest\NetClientTest\bin\Debug\NetClientTest.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\NetClientTest\NetClientTest\obj\Debug\NetClientTest.frmNetClient.resources
+C:\Users\hallo\source\repos\IoT_SW\C#\NetClientTest\NetClientTest\obj\Debug\NetClientTest.Properties.Resources.resources
+C:\Users\hallo\source\repos\IoT_SW\C#\NetClientTest\NetClientTest\obj\Debug\NetClientTest.csproj.GenerateResource.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\NetClientTest\NetClientTest\obj\Debug\NetClientTest.csproj.CoreCompileInputs.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\NetClientTest\NetClientTest\obj\Debug\NetClientTest.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\NetClientTest\NetClientTest\obj\Debug\NetClientTest.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\NetClientTest\NetClientTest\obj\Debug\NetClientTest.csprojAssemblyReference.cache

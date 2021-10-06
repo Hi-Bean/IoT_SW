@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C16E9164-F094-4D57-99DD-19319357B9B6}</ProjectGuid>
+    <ProjectGuid>{B6EBF89F-429A-4BBB-9EB3-ED8F23014EF0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>NetTest</RootNamespace>
-    <AssemblyName>NetTest</AssemblyName>
+    <RootNamespace>NetClientTest</RootNamespace>
+    <AssemblyName>NetClientTest</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,16 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmNetTest.cs">
+    <Compile Include="frmNetClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNetTest.Designer.cs">
-      <DependentUpon>frmNetTest.cs</DependentUpon>
+    <Compile Include="frmNetClient.Designer.cs">
+      <DependentUpon>frmNetClient.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmNetTest.resx">
-      <DependentUpon>frmNetTest.cs</DependentUpon>
+    <EmbeddedResource Include="frmNetClient.resx">
+      <DependentUpon>frmNetClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
