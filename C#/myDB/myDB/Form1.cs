@@ -72,7 +72,12 @@ namespace myDB
             {
                 dbGrid.Rows.Clear();
                 dbGrid.Columns.Clear();
-                StreamReader sr = new StreamReader(openFileDialog.FileName);
+                // UTF8 옵션이 체크돼있으면 ec=UTF8 / 그렇지 않으면 default로
+                Encoding ec = (mnuTextUTF8.Checked) ? Encoding.UTF8 : Encoding.Default;
+                StreamReader sr = new StreamReader(openFileDialog.FileName, ec, true);
+                // Encoding.Default = ANSI 라고 이해하자
+                //byte[] bb1 = Encoding.Convert(Encoding.ASCII, Encoding.Default, Encoding.Default.GetBytes(buf));
+                //string bb2 = Encoding.Default.GetString(bb1);
 
                 // col 이름 넣기
                 string str = sr.ReadLine();
@@ -155,50 +160,105 @@ namespace myDB
             sbLabel2.Text = e.ClickedItem.Text;
             RunSQL($"select * from {e.ClickedItem.Text}");
         }
+
         char[] ca = { ' ', '\t', '\r', '\n' };  // white space array
         public int RunSQL(string sql)
         {
             //sqlCmd.CommandText = $"select * from {e.ClickedItem.Text}";
-            sqlCmd.CommandText = sql;
-            string sqlStr = sql.Trim().Split(' ')[0];
-            if (sqlStr.ToLower() == "select")
+            try
             {
-                int n1 = sql.ToLower().IndexOf("from");
-                string s1 = sql.Substring(n1 + 4).Trim();
-                CurrentTable = s1.Split(ca)[0];
-                sbLabel2.Text = CurrentTable;
+                sqlCmd.CommandText = sql;
+                string sqlStr = sql.Trim().Split(' ')[0];
+                if (sqlStr.ToLower() == "select")
+                {
+                    int n1 = sql.ToLower().IndexOf("from");
+                    string s1 = sql.Substring(n1 + 4).Trim();
+                    CurrentTable = s1.Split(ca)[0];
+                    sbLabel2.Text = CurrentTable;
 
-                SqlDataReader sdr = sqlCmd.ExecuteReader();     // return값이 있어 출력
-                dbGrid.Rows.Clear();
-                dbGrid.Columns.Clear();
-                for (int i = 0; i < sdr.FieldCount; i++)
-                {
-                    string s = sdr.GetName(i);
-                    dbGrid.Columns.Add(s, s);
-                }
-                for (int i = 0; sdr.Read(); i++)
-                {
-                    int rIdx = dbGrid.Rows.Add();
-                    for (int j = 0; j < sdr.FieldCount; j++)
+                    SqlDataReader sdr = sqlCmd.ExecuteReader();     // return값이 있어 출력
+                    dbGrid.Rows.Clear();
+                    dbGrid.Columns.Clear();
+                    for (int i = 0; i < sdr.FieldCount; i++)
                     {
-                        object obj = sdr.GetValue(j);
-                        dbGrid.Rows[rIdx].Cells[j].Value = obj;
+                        string s = sdr.GetName(i);
+                        dbGrid.Columns.Add(s, s);
                     }
+                    for (int i = 0; sdr.Read(); i++)
+                    {
+                        int rIdx = dbGrid.Rows.Add();
+                        for (int j = 0; j < sdr.FieldCount; j++)
+                        {
+                            object obj = sdr.GetValue(j);
+                            dbGrid.Rows[rIdx].Cells[j].Value = obj;
+                        }
+                    }
+                    sdr.Close();
+                    return 0;
                 }
-                sdr.Close();
-
-                
-                return 0;
+                else
+                {
+                    return sqlCmd.ExecuteNonQuery();           // return 값이 없는 경우
+                }
             }
-            else
+            catch(Exception e1)
             {
-                return sqlCmd.ExecuteNonQuery();           // return 값이 없는 경우
+                MessageBox.Show(e1.Message);
+                return -1;
             }
+        
+        }
+
+        public string RunSQL_NoEcho(string sql)    // 모든 sql 명령어 처리 -> 조회결과를 문자열로 반환
+        {
+            //sqlCmd.CommandText = $"select * from {e.ClickedItem.Text}";
+            try
+            {
+                sqlCmd.CommandText = sql;
+                string sqlStr = sql.Trim().Split(' ')[0];
+                if (sqlStr.ToLower() == "select")
+                {
+                    int n1 = sql.ToLower().IndexOf("from");
+                    string s1 = sql.Substring(n1 + 4).Trim();
+                    CurrentTable = s1.Split(ca)[0];
+                    //sbLabel2.Text = CurrentTable;
+
+                    SqlDataReader sdr = sqlCmd.ExecuteReader();     // return값이 있어 출력
+                    string sRet = sdr.GetName(0);
+                    for (int i = 1; i < sdr.FieldCount; i++)
+                    {
+                        sRet += $", {sdr.GetName(i)}";
+                    }
+                    sRet += "\r\n";
+
+                    for (int i = 0; sdr.Read(); i++)
+                    {
+                        sRet += sdr.GetValue(0).ToString();
+                        for (int j = 1; j < sdr.FieldCount; j++)
+                        {
+                            sRet += $", {sdr.GetValue(j)}";
+                        }
+                    }
+                    sdr.Close();
+                    return sRet;
+                }
+                else
+                {
+                    return $"{sqlCmd.ExecuteNonQuery()}";           // return 값이 없는 경우
+                }
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.Message);
+                return "-1";
+            }
+
         }
 
         private void mnuSqlExecute_Click(object sender, EventArgs e)
         {
-            RunSQL(tbMemo.Text);
+            if (mnuEchoOptionGrid.Checked) RunSQL(tbMemo.Text);
+            else RunSQL_NoEcho(tbMemo.Text);
         }
 
         
@@ -215,7 +275,8 @@ namespace myDB
         // 선택 구문 sql 실행
         private void popSelectedExecute_Click(object sender, EventArgs e)
         {
-            RunSQL(tbMemo.SelectedText);
+            if (mnuEchoOptionGrid.Checked) RunSQL(tbMemo.SelectedText);
+            else RunSQL_NoEcho(tbMemo.SelectedText);
         }
 
         private void popUpdate_Click(object sender, EventArgs e)
@@ -227,7 +288,7 @@ namespace myDB
             object s2 = dbGrid.SelectedCells[0].Value;
             string o1 = dbGrid.Columns[0].HeaderText;
             object o2 = dbGrid.Rows[y].Cells[0].Value;
-            string sql = $"update {CurrentTable} set {s1}='{s2}' where {o1}='{o2}'";
+            string sql = $"update {CurrentTable} set {s1}=N'{s2}' where {o1}=N'{o2}'";
             RunSQL(sql);
         }
 
@@ -280,7 +341,37 @@ namespace myDB
 
         private void mnuFileImport_Click(object sender, EventArgs e)
         {
-            mnuFileMigration_Click(sender, e);
+            //mnuFileMigration_Click(sender, e);
+            //Low level 코딩을 위해
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Encoding enc;
+                if (mnuTextUTF8.Checked)
+                    enc = Encoding.UTF8;
+                else
+                    enc = Encoding.Default;
+
+                // 모든 정보를 '바이너리'로 읽어와 byte array에 저장
+                byte[] bArrOrg = File.ReadAllBytes(openFileDialog.FileName);    //  raw data: low level data
+                byte[] bArr = Encoding.Convert(enc, Encoding.Default, bArrOrg); // conversion
+                string str = Encoding.Default.GetString(bArr);      // All Text
+
+                tbMemo.Text = str;
+                string[] splitStr = str.Split(ca);      // ca는 white space array
+                string[] Value = splitStr[0].Trim().Split(',');
+
+                for(int i=0; i<Value.Length; i++)
+                {
+                    dbGrid.Columns.Add(Value[i], Value[i]);
+                }
+
+                for(int i=2; i<splitStr.Length; i+=2)
+                {
+                    Value = splitStr[i].Split(',');
+                    dbGrid.Rows.Add(Value);
+                }
+            }
         }
 
         private void mnuFileExport_Click(object sender, EventArgs e)
@@ -326,7 +417,7 @@ namespace myDB
                 {
                     if (i != 0) { s1 += ","; s2 += ","; }
                     s1 += $"{dbGrid.Columns[i].HeaderText}";
-                    s2 += $"'{dbGrid.Rows[nRow].Cells[i].Value}'";
+                    s2 += $"N'{dbGrid.Rows[nRow].Cells[i].Value}'";
                 }
                 s1 += ")"; s2 += ")";
                 string sql = $"insert into {CurrentTable} {s1} values {s2}";
@@ -345,7 +436,7 @@ namespace myDB
                 //    if (i != 0) sql += ",";
                 //    sql += $"'{dbGrid.SelectedRows[0].Cells[i].Value}'";
                 //}
-                sql += ")";
+                //sql += ")";
                 RunSQL(sql);
             }
             catch (Exception e1)
@@ -368,9 +459,9 @@ namespace myDB
             for (int i = 0; i < count; i++)
             {
                 string filed_name = myClass.GetInput("필드 이름");
-                string type = myClass.GetInput("타입");
+                //string type = myClass.GetInput("타입");
                 
-                sql += $"{filed_name} {type}";
+                sql += $"{filed_name} varchar(10)";
                 if (i == 0) sql += " not null";
                 if (i != count - 1) sql += ", ";
             }
@@ -380,6 +471,78 @@ namespace myDB
 
             for (int i = 0; i < dbGrid.RowCount; i++)
                 Insert_Proc(i);
+        }
+
+        private void mnuTextUTF8_Click(object sender, EventArgs e)
+        {
+            mnuTextUTF8.Checked = true;
+            mnuTextAnsi.Checked = false;
+        }
+
+        private void mnuTextAnsi_Click(object sender, EventArgs e)
+        {
+            mnuTextUTF8.Checked = false;
+            mnuTextAnsi.Checked = true;
+        }
+
+
+        //select * from information_schema.tables   : DB의 테이블 정보들이 나옴
+        //select data_type, character_maximum_length, is_nullable from information_schema.columns where column_name='code'
+        private void popCOLInfo_Click(object sender, EventArgs e)
+        {
+            int nCol = dbGrid.SelectedCells[0].ColumnIndex;
+            string sCol = dbGrid.Columns[nCol].HeaderText;
+            tbMemo.Text += RunSQL_NoEcho($"select table_name, column_name, data_type, character_maximum_length, is_nullable from information_schema.columns where column_name='{sCol}' and table_name = '{CurrentTable}'");
+        }
+
+        private void mnuEchoOptionText_Click(object sender, EventArgs e)
+        {
+            mnuEchoOptionGrid.Checked = false;
+            mnuEchoOptionText.Checked = true;
+        }
+
+        private void mnuEchoOptionGrid_Click(object sender, EventArgs e)
+        {
+            mnuEchoOptionGrid.Checked = true;
+            mnuEchoOptionText.Checked = false;
+        }
+
+        private void popAlterCol_Click(object sender, EventArgs e)
+        {
+            // ALTER TABLE [Table]
+            // ALTER COLUMN [column] [type] [nullable]          // MSSQL <-> MySQL (명령어가 조금 다름)
+            // Form을 신규 생성 : 컬럼 type, Max Length, nullable 선택
+
+            // 현재 선택된 셀의 col이름을 가져오는 과정
+            int nCol = dbGrid.SelectedCells[0].ColumnIndex;
+            string sCol = dbGrid.Columns[nCol].HeaderText;
+
+            string str = RunSQL_NoEcho("select Table_name,column_name,data_type,character_maximum_length,is_nullable " +
+                          " from information_schema.columns " +
+                          $" where column_name = '{sCol}' and table_name='{CurrentTable}'");
+            
+            try
+            {
+                string temp = str.Split('\n')[1];
+                string[] sInfo = temp.Trim().Split(',');  // col 정보 : table_name, column_name, data_type, character_maximum_length, is_nullable
+
+                AlterColForm af = new AlterColForm(sInfo[1], sInfo[2], int.Parse(sInfo[3]));
+                if (af.ShowDialog() == DialogResult.OK)
+                {
+                    string strNullable = "";
+                    if (af.rbtnNULLyes.Checked)
+                        strNullable = "NULL";
+                    else
+                        strNullable = "NOT NULL";
+                    string sql = $"ALTER TABLE {sInfo[0]} ALTER COLUMN {sInfo[1]} {af.cbType.Text}({af.tbMaxLen.Text}) {strNullable}";
+                    RunSQL(sql);
+                }
+                af.Close();
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.Message);
+            }
         }
     }
 }

@@ -11,3 +11,4 @@ C:\Users\hallo\source\repos\IoT_SW\C#\myDB\myDB\obj\Debug\myDB.csproj.CoreCompil
 C:\Users\hallo\source\repos\IoT_SW\C#\myDB\myDB\obj\Debug\myDB.csproj.CopyComplete
 C:\Users\hallo\source\repos\IoT_SW\C#\myDB\myDB\obj\Debug\myDB.exe
 C:\Users\hallo\source\repos\IoT_SW\C#\myDB\myDB\obj\Debug\myDB.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\myDB\myDB\obj\Debug\myDB.AlterColForm.resources

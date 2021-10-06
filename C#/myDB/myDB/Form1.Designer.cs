@@ -35,9 +35,12 @@ namespace myDB
             this.PopupMenu1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.popColAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.popRowAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.popColDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.popRowDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.popCOLInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.popUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.popInsert = new System.Windows.Forms.ToolStripMenuItem();
             this.popDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +61,13 @@ namespace myDB
             this.mnuRowAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.sQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSqlExecute = new System.Windows.Forms.ToolStripMenuItem();
+            this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textOptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTextUTF8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTextAnsi = new System.Windows.Forms.ToolStripMenuItem();
+            this.echoOptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEchoOptionText = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEchoOptionGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.tbMemo = new System.Windows.Forms.TextBox();
             this.popupMenu2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.popSelectedExecute = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +77,7 @@ namespace myDB
             this.sbLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.sbLabel2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.popAlterCol = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dbGrid)).BeginInit();
             this.PopupMenu1.SuspendLayout();
             this.menuMain.SuspendLayout();
@@ -97,66 +108,87 @@ namespace myDB
             this.PopupMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.popColAdd,
             this.popRowAdd,
+            this.toolStripMenuItem4,
             this.popColDelete,
             this.popRowDelete,
             this.toolStripMenuItem3,
+            this.popCOLInfo,
+            this.popAlterCol,
+            this.toolStripMenuItem5,
             this.popUpdate,
             this.popInsert,
             this.popDelete});
             this.PopupMenu1.Name = "PopupMenu1";
-            this.PopupMenu1.Size = new System.Drawing.Size(168, 178);
+            this.PopupMenu1.Size = new System.Drawing.Size(211, 266);
             // 
             // popColAdd
             // 
             this.popColAdd.Name = "popColAdd";
-            this.popColAdd.Size = new System.Drawing.Size(167, 24);
+            this.popColAdd.Size = new System.Drawing.Size(210, 24);
             this.popColAdd.Text = "Column 추가";
             this.popColAdd.Click += new System.EventHandler(this.popColAdd_Click);
             // 
             // popRowAdd
             // 
             this.popRowAdd.Name = "popRowAdd";
-            this.popRowAdd.Size = new System.Drawing.Size(167, 24);
+            this.popRowAdd.Size = new System.Drawing.Size(210, 24);
             this.popRowAdd.Text = "Row 추가";
             this.popRowAdd.Click += new System.EventHandler(this.popRowAdd_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(207, 6);
             // 
             // popColDelete
             // 
             this.popColDelete.Name = "popColDelete";
-            this.popColDelete.Size = new System.Drawing.Size(167, 24);
+            this.popColDelete.Size = new System.Drawing.Size(210, 24);
             this.popColDelete.Text = "Column 삭제";
             this.popColDelete.Click += new System.EventHandler(this.popColDelete_Click);
             // 
             // popRowDelete
             // 
             this.popRowDelete.Name = "popRowDelete";
-            this.popRowDelete.Size = new System.Drawing.Size(167, 24);
+            this.popRowDelete.Size = new System.Drawing.Size(210, 24);
             this.popRowDelete.Text = "Row 삭제";
             this.popRowDelete.Click += new System.EventHandler(this.popRowDelete_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(164, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(207, 6);
+            // 
+            // popCOLInfo
+            // 
+            this.popCOLInfo.Name = "popCOLInfo";
+            this.popCOLInfo.Size = new System.Drawing.Size(210, 24);
+            this.popCOLInfo.Text = "Column 정보";
+            this.popCOLInfo.Click += new System.EventHandler(this.popCOLInfo_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(207, 6);
             // 
             // popUpdate
             // 
             this.popUpdate.Name = "popUpdate";
-            this.popUpdate.Size = new System.Drawing.Size(167, 24);
+            this.popUpdate.Size = new System.Drawing.Size(210, 24);
             this.popUpdate.Text = "table update";
             this.popUpdate.Click += new System.EventHandler(this.popUpdate_Click);
             // 
             // popInsert
             // 
             this.popInsert.Name = "popInsert";
-            this.popInsert.Size = new System.Drawing.Size(167, 24);
+            this.popInsert.Size = new System.Drawing.Size(210, 24);
             this.popInsert.Text = "table insert";
             this.popInsert.Click += new System.EventHandler(this.popInsert_Click);
             // 
             // popDelete
             // 
             this.popDelete.Name = "popDelete";
-            this.popDelete.Size = new System.Drawing.Size(167, 24);
+            this.popDelete.Size = new System.Drawing.Size(210, 24);
             this.popDelete.Text = "레코드 삭제";
             this.popDelete.Click += new System.EventHandler(this.popDelete_Click);
             // 
@@ -166,7 +198,8 @@ namespace myDB
             this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
-            this.sQLToolStripMenuItem});
+            this.sQLToolStripMenuItem,
+            this.configToolStripMenuItem});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
             this.menuMain.Size = new System.Drawing.Size(757, 28);
@@ -191,13 +224,13 @@ namespace myDB
             // mnuFileNew
             // 
             this.mnuFileNew.Name = "mnuFileNew";
-            this.mnuFileNew.Size = new System.Drawing.Size(224, 26);
+            this.mnuFileNew.Size = new System.Drawing.Size(211, 26);
             this.mnuFileNew.Text = "New";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(208, 6);
             // 
             // mnuFileMigration
             // 
@@ -205,52 +238,52 @@ namespace myDB
             this.mnuFileImport,
             this.mnuFileExport});
             this.mnuFileMigration.Name = "mnuFileMigration";
-            this.mnuFileMigration.Size = new System.Drawing.Size(224, 26);
+            this.mnuFileMigration.Size = new System.Drawing.Size(211, 26);
             this.mnuFileMigration.Text = "Migration ... (.csv)";
             // 
             // mnuFileImport
             // 
             this.mnuFileImport.Name = "mnuFileImport";
-            this.mnuFileImport.Size = new System.Drawing.Size(224, 26);
+            this.mnuFileImport.Size = new System.Drawing.Size(137, 26);
             this.mnuFileImport.Text = "Import";
             this.mnuFileImport.Click += new System.EventHandler(this.mnuFileImport_Click);
             // 
             // mnuFileExport
             // 
             this.mnuFileExport.Name = "mnuFileExport";
-            this.mnuFileExport.Size = new System.Drawing.Size(224, 26);
+            this.mnuFileExport.Size = new System.Drawing.Size(137, 26);
             this.mnuFileExport.Text = "Export";
             this.mnuFileExport.Click += new System.EventHandler(this.mnuFileExport_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(208, 6);
             // 
             // mnuFileOpen
             // 
             this.mnuFileOpen.Name = "mnuFileOpen";
-            this.mnuFileOpen.Size = new System.Drawing.Size(224, 26);
+            this.mnuFileOpen.Size = new System.Drawing.Size(211, 26);
             this.mnuFileOpen.Text = "Open";
             this.mnuFileOpen.Click += new System.EventHandler(this.mnuFileOpen_Click);
             // 
             // mnuUpdateTable
             // 
             this.mnuUpdateTable.Name = "mnuUpdateTable";
-            this.mnuUpdateTable.Size = new System.Drawing.Size(224, 26);
+            this.mnuUpdateTable.Size = new System.Drawing.Size(211, 26);
             this.mnuUpdateTable.Text = "Update table";
             // 
             // mnuCreateTable
             // 
             this.mnuCreateTable.Name = "mnuCreateTable";
-            this.mnuCreateTable.Size = new System.Drawing.Size(224, 26);
+            this.mnuCreateTable.Size = new System.Drawing.Size(211, 26);
             this.mnuCreateTable.Text = "Create table";
             this.mnuCreateTable.Click += new System.EventHandler(this.mnuCreateTable_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -290,6 +323,67 @@ namespace myDB
             this.mnuSqlExecute.Size = new System.Drawing.Size(144, 26);
             this.mnuSqlExecute.Text = "Execute";
             this.mnuSqlExecute.Click += new System.EventHandler(this.mnuSqlExecute_Click);
+            // 
+            // configToolStripMenuItem
+            // 
+            this.configToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.textOptionToolStripMenuItem,
+            this.echoOptionToolStripMenuItem});
+            this.configToolStripMenuItem.Name = "configToolStripMenuItem";
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
+            this.configToolStripMenuItem.Text = "Config";
+            // 
+            // textOptionToolStripMenuItem
+            // 
+            this.textOptionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuTextUTF8,
+            this.mnuTextAnsi});
+            this.textOptionToolStripMenuItem.Name = "textOptionToolStripMenuItem";
+            this.textOptionToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.textOptionToolStripMenuItem.Text = "Text Option";
+            // 
+            // mnuTextUTF8
+            // 
+            this.mnuTextUTF8.Checked = true;
+            this.mnuTextUTF8.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mnuTextUTF8.Name = "mnuTextUTF8";
+            this.mnuTextUTF8.Size = new System.Drawing.Size(132, 26);
+            this.mnuTextUTF8.Text = "UTF-8";
+            this.mnuTextUTF8.Click += new System.EventHandler(this.mnuTextUTF8_Click);
+            // 
+            // mnuTextAnsi
+            // 
+            this.mnuTextAnsi.Name = "mnuTextAnsi";
+            this.mnuTextAnsi.Size = new System.Drawing.Size(132, 26);
+            this.mnuTextAnsi.Text = "ANSI";
+            this.mnuTextAnsi.Click += new System.EventHandler(this.mnuTextAnsi_Click);
+            // 
+            // echoOptionToolStripMenuItem
+            // 
+            this.echoOptionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuEchoOptionText,
+            this.mnuEchoOptionGrid});
+            this.echoOptionToolStripMenuItem.Name = "echoOptionToolStripMenuItem";
+            this.echoOptionToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.echoOptionToolStripMenuItem.Text = "Echo Option";
+            // 
+            // mnuEchoOptionText
+            // 
+            this.mnuEchoOptionText.CheckOnClick = true;
+            this.mnuEchoOptionText.Name = "mnuEchoOptionText";
+            this.mnuEchoOptionText.Size = new System.Drawing.Size(121, 26);
+            this.mnuEchoOptionText.Text = "Text";
+            this.mnuEchoOptionText.Click += new System.EventHandler(this.mnuEchoOptionText_Click);
+            // 
+            // mnuEchoOptionGrid
+            // 
+            this.mnuEchoOptionGrid.Checked = true;
+            this.mnuEchoOptionGrid.CheckOnClick = true;
+            this.mnuEchoOptionGrid.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mnuEchoOptionGrid.Name = "mnuEchoOptionGrid";
+            this.mnuEchoOptionGrid.Size = new System.Drawing.Size(121, 26);
+            this.mnuEchoOptionGrid.Text = "Grid";
+            this.mnuEchoOptionGrid.Click += new System.EventHandler(this.mnuEchoOptionGrid_Click);
             // 
             // tbMemo
             // 
@@ -371,6 +465,13 @@ namespace myDB
             this.sbLabel2.Text = "sbLabel2";
             this.sbLabel2.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.sbLabel2_DropDownItemClicked);
             // 
+            // popAlterCol
+            // 
+            this.popAlterCol.Name = "popAlterCol";
+            this.popAlterCol.Size = new System.Drawing.Size(210, 24);
+            this.popAlterCol.Text = "ALTER Column";
+            this.popAlterCol.Click += new System.EventHandler(this.popAlterCol_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -439,6 +540,17 @@ namespace myDB
         private System.Windows.Forms.ToolStripMenuItem mnuFileImport;
         private System.Windows.Forms.ToolStripMenuItem mnuFileExport;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem configToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem textOptionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuTextUTF8;
+        private System.Windows.Forms.ToolStripMenuItem mnuTextAnsi;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem popCOLInfo;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem echoOptionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuEchoOptionText;
+        private System.Windows.Forms.ToolStripMenuItem mnuEchoOptionGrid;
+        private System.Windows.Forms.ToolStripMenuItem popAlterCol;
     }
 }
 
