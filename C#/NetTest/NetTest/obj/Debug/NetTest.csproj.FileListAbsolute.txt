@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\bin\Debug\NetTest.exe.config
 C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\bin\Debug\NetTest.exe
 C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\bin\Debug\NetTest.pdb
@@ -8,3 +9,15 @@ C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\obj\Debug\NetTest.csproj.C
 C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\obj\Debug\NetTest.exe
 C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\obj\Debug\NetTest.pdb
 C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\obj\Debug\NetTest.frmNetTest.resources
+=======
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\bin\Debug\NetTest.exe.config
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\bin\Debug\NetTest.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\bin\Debug\NetTest.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\obj\Debug\NetTest.csprojAssemblyReference.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\obj\Debug\NetTest.Properties.Resources.resources
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\obj\Debug\NetTest.csproj.GenerateResource.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\obj\Debug\NetTest.csproj.CoreCompileInputs.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\obj\Debug\NetTest.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\obj\Debug\NetTest.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest\NetTest\obj\Debug\NetTest.frmNetTest.resources
+>>>>>>> d6f2268fffd826681662cd32469f50a28683ba49

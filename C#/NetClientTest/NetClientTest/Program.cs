@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,3 +21,27 @@ namespace NetClientTest
         }
     }
 }
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace NetClientTest
+{
+    static class Program
+    {
+        /// <summary>
+        /// 해당 애플리케이션의 주 진입점입니다.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new frmNetClient());
+        }
+    }
+}
+>>>>>>> d6f2268fffd826681662cd32469f50a28683ba49
