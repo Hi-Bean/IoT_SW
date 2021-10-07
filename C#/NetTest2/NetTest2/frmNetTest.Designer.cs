@@ -29,6 +29,7 @@ namespace NetTest2
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tbServer = new System.Windows.Forms.TextBox();
@@ -43,6 +44,7 @@ namespace NetTest2
             this.btnServerStart = new System.Windows.Forms.Button();
             this.tbServerPort = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -216,6 +218,10 @@ namespace NetTest2
             this.label1.TabIndex = 0;
             this.label1.Text = "Port";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // frmNetTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -224,6 +230,7 @@ namespace NetTest2
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmNetTest";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmNetTest_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -258,6 +265,7 @@ namespace NetTest2
         private System.Windows.Forms.Button btnServerStart;
         private System.Windows.Forms.TextBox tbServerPort;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

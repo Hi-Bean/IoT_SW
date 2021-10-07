@@ -44,6 +44,7 @@ namespace NetClientTest
             // 
             // tbClient
             // 
+            this.tbClient.ContextMenuStrip = this.contextMenuStrip1;
             this.tbClient.Location = new System.Drawing.Point(15, 18);
             this.tbClient.Multiline = true;
             this.tbClient.Name = "tbClient";
@@ -67,6 +68,7 @@ namespace NetClientTest
             this.tbClientIP.Name = "tbClientIP";
             this.tbClientIP.Size = new System.Drawing.Size(109, 26);
             this.tbClientIP.TabIndex = 2;
+            this.tbClientIP.Text = "127.0.0.1";
             // 
             // label2
             // 
@@ -85,6 +87,7 @@ namespace NetClientTest
             this.tbClientPort.Name = "tbClientPort";
             this.tbClientPort.Size = new System.Drawing.Size(109, 26);
             this.tbClientPort.TabIndex = 2;
+            this.tbClientPort.Text = "9000";
             // 
             // btnClientConnect
             // 
@@ -114,12 +117,12 @@ namespace NetClientTest
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pmnuSendText});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 56);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(146, 28);
             // 
             // pmnuSendText
             // 
             this.pmnuSendText.Name = "pmnuSendText";
-            this.pmnuSendText.Size = new System.Drawing.Size(210, 24);
+            this.pmnuSendText.Size = new System.Drawing.Size(145, 24);
             this.pmnuSendText.Text = "Send Text";
             this.pmnuSendText.Click += new System.EventHandler(this.pmnuSendText_Click);
             // 
