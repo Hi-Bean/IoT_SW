@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTest2", "NetTest2\NetTest2.csproj", "{3819F2B3-1BC5-4E35-B27E-A112DFA5E236}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetClientTest", "NetClientTest\NetClientTest.csproj", "{2BC243CB-7D77-4CBC-85AA-732D89B54D98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3819F2B3-1BC5-4E35-B27E-A112DFA5E236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3819F2B3-1BC5-4E35-B27E-A112DFA5E236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3819F2B3-1BC5-4E35-B27E-A112DFA5E236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3819F2B3-1BC5-4E35-B27E-A112DFA5E236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BC243CB-7D77-4CBC-85AA-732D89B54D98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BC243CB-7D77-4CBC-85AA-732D89B54D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BC243CB-7D77-4CBC-85AA-732D89B54D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BC243CB-7D77-4CBC-85AA-732D89B54D98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8ED54F43-8AAD-4DA4-9425-39A053C9F64B}
+	EndGlobalSection
+EndGlobal

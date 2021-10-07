@@ -1,0 +1,10 @@
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest2\NetTest2\bin\Debug\NetTest2.exe.config
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest2\NetTest2\bin\Debug\NetTest2.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest2\NetTest2\bin\Debug\NetTest2.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest2\NetTest2\obj\Debug\NetTest2.csprojAssemblyReference.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest2\NetTest2\obj\Debug\NetTest2.frmNetTest.resources
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest2\NetTest2\obj\Debug\NetTest2.Properties.Resources.resources
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest2\NetTest2\obj\Debug\NetTest2.csproj.GenerateResource.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest2\NetTest2\obj\Debug\NetTest2.csproj.CoreCompileInputs.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest2\NetTest2\obj\Debug\NetTest2.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\NetTest2\NetTest2\obj\Debug\NetTest2.pdb
