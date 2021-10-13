@@ -1,0 +1,10 @@
+C:\Users\hallo\source\repos\myChat\myChat\bin\Debug\myChat.exe.config
+C:\Users\hallo\source\repos\myChat\myChat\bin\Debug\myChat.exe
+C:\Users\hallo\source\repos\myChat\myChat\bin\Debug\myChat.pdb
+C:\Users\hallo\source\repos\myChat\myChat\obj\Debug\myChat.frmChat.resources
+C:\Users\hallo\source\repos\myChat\myChat\obj\Debug\myChat.Properties.Resources.resources
+C:\Users\hallo\source\repos\myChat\myChat\obj\Debug\myChat.csproj.GenerateResource.cache
+C:\Users\hallo\source\repos\myChat\myChat\obj\Debug\myChat.csproj.CoreCompileInputs.cache
+C:\Users\hallo\source\repos\myChat\myChat\obj\Debug\myChat.exe
+C:\Users\hallo\source\repos\myChat\myChat\obj\Debug\myChat.pdb
+C:\Users\hallo\source\repos\myChat\myChat\obj\Debug\myChat.csprojAssemblyReference.cache
