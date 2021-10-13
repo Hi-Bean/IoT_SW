@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HALLOTALK", "HALLOTALK\HALLOTALK.csproj", "{E6704639-5B39-449C-8C67-2A267A9A4166}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientChat", "ClientChat\ClientChat.csproj", "{17C0AB30-F6CC-4BB4-9171-B905BA8630AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6704639-5B39-449C-8C67-2A267A9A4166}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6704639-5B39-449C-8C67-2A267A9A4166}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6704639-5B39-449C-8C67-2A267A9A4166}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6704639-5B39-449C-8C67-2A267A9A4166}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17C0AB30-F6CC-4BB4-9171-B905BA8630AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17C0AB30-F6CC-4BB4-9171-B905BA8630AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17C0AB30-F6CC-4BB4-9171-B905BA8630AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17C0AB30-F6CC-4BB4-9171-B905BA8630AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9D8C5B3-87B1-4893-B781-2A5CF70B95D8}
+	EndGlobalSection
+EndGlobal

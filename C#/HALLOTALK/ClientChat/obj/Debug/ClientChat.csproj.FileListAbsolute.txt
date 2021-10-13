@@ -1,0 +1,13 @@
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\bin\Debug\ClientChat.exe.config
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\bin\Debug\ClientChat.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\bin\Debug\ClientChat.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\bin\Debug\myLibrary.dll
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\bin\Debug\myLibrary.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\obj\Debug\ClientChat.Form1.resources
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\obj\Debug\ClientChat.Properties.Resources.resources
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\obj\Debug\ClientChat.csproj.GenerateResource.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\obj\Debug\ClientChat.csproj.CoreCompileInputs.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\obj\Debug\ClientChat.csproj.CopyComplete
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\obj\Debug\ClientChat.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\obj\Debug\ClientChat.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\ClientChat\obj\Debug\ClientChat.csprojAssemblyReference.cache

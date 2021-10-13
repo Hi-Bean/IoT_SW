@@ -1,0 +1,13 @@
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\bin\Debug\HALLOTALK.exe.config
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\bin\Debug\HALLOTALK.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\bin\Debug\HALLOTALK.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\bin\Debug\myLibrary.dll
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\bin\Debug\myLibrary.pdb
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\obj\Debug\HALLOTALK.csprojAssemblyReference.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\obj\Debug\HALLOTALK.frmServer.resources
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\obj\Debug\HALLOTALK.Properties.Resources.resources
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\obj\Debug\HALLOTALK.csproj.GenerateResource.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\obj\Debug\HALLOTALK.csproj.CoreCompileInputs.cache
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\obj\Debug\HALLOTALK.csproj.CopyComplete
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\obj\Debug\HALLOTALK.exe
+C:\Users\hallo\source\repos\IoT_SW\C#\HALLOTALK\HALLOTALK\obj\Debug\HALLOTALK.pdb
